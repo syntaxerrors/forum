@@ -19,6 +19,8 @@
     "autoload": {
         "classmap": [
             "src/controllers",
+            "src/database/migrations",
+            "src/database/seeds",
             "src/models",
             "src/presenters",
             "src/services",
