@@ -29,6 +29,7 @@ class ForumServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->shareWithApp();
+		$this->loadConfig();
 		$this->registerViews();
 	}
 
@@ -43,6 +44,16 @@ class ForumServiceProvider extends ServiceProvider {
 		{
 			return true;
 		});
+	}
+
+	/**
+	 * Load the config for the package
+	 *
+	 * @return void
+	 */
+	protected function loadConfig()
+	{
+		$this->app['config']->package('syntax/forum', __DIR__.'/../../../config');
 	}
 
 	/**
