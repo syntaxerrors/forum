@@ -97,6 +97,7 @@ class ForumServiceProvider extends ServiceProvider {
 			'Forum_Reply_Roll'            => 'Syntax\Core\Forum_Reply_Roll',
 			'Forum_Reply_Type'            => 'Syntax\Core\Forum_Reply_Type',
 			'Forum_Support_Status'        => 'Syntax\Core\Forum_Support_Status',
+			'User_Forum'                  => 'Syntax\Core\User_Forum',
 		];
 
 		$appAliases = \Config::get('core::nonCoreAliases');
