@@ -1,4 +1,4 @@
-<?php namespace Syntax\Core;
+<?php namespace Syntax\Core\Traits;
 
 class ForumableUserTrait {
 
