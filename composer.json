@@ -28,7 +28,7 @@
             "src/views"
         ],
         "psr-0": {
-            "Syntax\\Forum\\": "src/"
+            "Syntax\\Forum\\": "src/Syntax/Forum"
         }
     },
     "extra": {

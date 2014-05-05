@@ -1,4 +1,4 @@
-<?php namespace Syntax\Core\Traits;
+<?php namespace Syntax\Forum\Traits;
 
 class ForumableUserTrait {
 
@@ -25,17 +25,17 @@ class ForumableUserTrait {
 		// return Forum_Board::where('id', '=', $boardId)->or_where('parent_id', '=', $boardId)->get()->unreadFlagForUser($this->id);
 
 		// Get all parent and child boards matching the id
-		$boardIds   = Forum_Board::where('uniqueId', $boardId)->orWhere('parent_id', '=', $boardId)->get()->id->toArray();
+		$boardIds   = \Forum_Board::where('uniqueId', $boardId)->orWhere('parent_id', '=', $boardId)->get()->id->toArray();
 
 		// Get any posts within those boards
-		$posts    = Forum_Post::whereIn('forum_board_id', $boardIds)->get();
+		$posts    = \Forum_Post::whereIn('forum_board_id', $boardIds)->get();
 		$postIds  = $posts->id->toArray();
 
 		// Make sure there are posts
 		if (count($postIds) > 0) {
 
 			// See which of these posts the user has already viewed
-			$viewedPosts = Forum_Post_View::where('user_id', '=', $this->id)->whereIn('forum_post_id', $postIds)->get();
+			$viewedPosts = \Forum_Post_View::where('user_id', '=', $this->id)->whereIn('forum_post_id', $postIds)->get();
 
 			// If the posts are greater than the viewed, there are new posts
 			if (count($posts) > count($viewedPosts)) {
@@ -53,7 +53,7 @@ class ForumableUserTrait {
 	public function unreadPostCount()
 	{
 		// Get the id of all posts
-		$posts      = Forum_Post::all();
+		$posts      = \Forum_Post::all();
 		$postsCount = $posts->count();
 
 		if ($postsCount > 0) {
@@ -65,7 +65,7 @@ class ForumableUserTrait {
 			$postIds = $posts->id->toArray();
 
 			// See which of these the user has viewed
-			$viewedPostCount = Forum_Post_View::where('user_id', $this->id)->whereIn('forum_post_id', $postIds)->count();
+			$viewedPostCount = \Forum_Post_View::where('user_id', $this->id)->whereIn('forum_post_id', $postIds)->count();
 
 			// If there are more posts than viewed posts, return the remainder
 			if ($postsCount > $viewedPostCount) {
