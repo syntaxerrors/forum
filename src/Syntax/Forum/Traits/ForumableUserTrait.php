@@ -1,16 +1,16 @@
 <?php namespace Syntax\Core;
 
-class User_Forum extends Syntax\Core\User {
+class ForumableUserTrait {
 
-	public function __construct()
-	{
-		parent::__construct();
+    public function posts()
+    {
+        return $this->hasMany('Forum_Post', user_id);
+    }
 
-		self::$relationsData = array_merge(parent::$relationsData, array(
-			'posts'       => array('hasMany', 'Forum_Post',		'foreignKey' => 'user_id'),
-			'replies'     => array('hasMany', 'Forum_Reply',	'foreignKey' => 'user_id'),
-		));
-	}
+    public function replies()
+    {
+        return $this->hasMany('Forum_Reply', user_id);
+    }
 
 	/**
 	 * See if there are unread posts in a certain forum board
